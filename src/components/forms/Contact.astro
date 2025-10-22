@@ -1,0 +1,135 @@
+---
+import Button from "@components/ui/Button.astro";
+import Input from "@components/ui/form/Input.astro";
+import Textarea from "@components/ui/form/Textarea.astro";
+import Radio from "@components/ui/form/Radio.astro";
+import Checkbox from "@components/ui/form/Checkbox.astro";
+import Select from "@components/ui/form/Select.astro";
+
+const formBackground = 'light';
+const interestOptions = [
+    { label: "Boende", value: "Boende" },
+    { label: "Aktiviteter", value: "Aktiviteter" }
+];
+---
+
+
+<form id="form" onsubmit="event => event.preventDefault();return false" class="space-y-6 bg-white p-6 rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Input
+        label="Namn"
+        id="name"
+        name="name"
+        required
+        background={formBackground}
+        />
+        <Input
+        label="Email"
+        type="email"
+        id="email"
+        name="email"
+        required
+        background={formBackground}
+        />
+    </div>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Input
+        label="Telefon"
+        type="tel"
+        id="tel"
+        name="tel"
+        background={formBackground}
+    />
+     <Checkbox
+        label="Intress omrode"
+        id="interests"
+        name="interests"
+        options={interestOptions}
+        background={formBackground}
+    /> 
+ 
+    </div>    
+    <Textarea
+        label="Meddelande"
+        id="message"
+        name="message"
+        required
+        background={formBackground}
+    />   
+    <Checkbox
+        label="Ja, jag godkänner Åreskutans integritietspolicy(GDPR)"
+        id="terms"
+        name="terms"
+        required
+        background={formBackground}
+    />
+    
+    <div class="mt-6">
+        <Button type="submit">SKICKA</Button>
+    </div>
+</form>
+
+
+<script is:inline>
+
+const get = (id) => document.getElementById(id) || { value: '' }
+const submitForm = () => {
+  saveInput()
+  sendmail()
+}
+
+const getFormData = () => {
+  const store = Object.create(null)
+  //store.name = get('name')?.value
+  store.name = "Brett Victor Simpson"
+  store.email = get('email')?.value
+  store.tel = get('tel')?.value
+  //store.subject = get('subject')?.value
+  store.interests = get('interests')?.value
+  store.message = get('message')?.value
+  return store
+}
+
+const saveInput = () => {
+  const { message, subject, ...rest } = getFormData()
+  localStorage.setItem('contactinfo', JSON.stringify(rest))
+}
+
+const retrieveInfo = () => {
+  const store = JSON.parse(localStorage.getItem('contactinfo') || '{}')
+  get('name').value = store.name || ''
+  get('email').value = store.email || ''
+  get('tel').value = store.tel || ''
+}
+// end: localstorage
+
+const submitBtn = document.querySelector('[type="submit"]')
+submitBtn?.addEventListener('click', submitForm)
+retrieveInfo()
+;[...document.querySelectorAll('input')][0]?.focus()
+// window.onload = () => {} // don't know why this wont work
+
+const sendmail = async () => {
+  const { name, email, tel, message, interests } = getFormData()
+  const data = await fetch('/api/sendmail.json', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, email, tel, message, interests }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res.status)
+      }
+      return res.json()
+    })
+    .catch((err) => {
+      console.log('Error', err)
+      throw new Error('Network error.')
+    })
+  console.log(data) // Here is the response from backend
+   alert('Message successfully sent');
+  
+}
+</script>       
