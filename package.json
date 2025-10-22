@@ -14,6 +14,7 @@
     "astro": "^5.14.8",
     "astro-breadcrumbs": "^3.3.1",
     "astro-robots-txt": "^1.0.0",
+    "lucide-astro": "^0.546.0",
     "tailwindcss": "^4.1.15"
   }
 }
