@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
+
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Breadcrumbs } from "astro-breadcrumbs";
+import "astro-breadcrumbs/breadcrumbs.css";
+
+import SwiperHero from '@components/sections/SwiperHero.astro';
+import swiperImage1 from '../assets/images/home/newy.jpg';
+import swiperImage2 from '../assets/images/home/IMG_5183-scaled.jpg';
+import swiperImage3 from '../assets/images/home/skutan-gondolen1.jpg';
+import swiperImage4 from '../assets/images/home/ll-summer3.jpg';
+
+
+const seoTitle = "Åreskutan.se, boende och aktivititer i Åre";
+const seoDescription = "Boende och adventure i centralt Åre.";
+
+
+const swiperHeroContent = {
+    title: 'Boende och Aktiviteter i Åre',
+    description: 'Nara till alt.',
+    buttons: [
+        {
+            text: 'Boende',
+            link: '/boende',
+            target: '_self'
+        },
+        {
+            text: 'Aktiviteter',
+            link: '/aktiviteter',
+            target: '_self'
+        },
+        {
+            text: 'FAQ',
+            link: '#faq',
+            target: '_self'
+        }
+    ],
+    swiperImages: [
+        { swiperBackgroundImage: swiperImage1 },
+        { swiperBackgroundImage: swiperImage2 },
+        { swiperBackgroundImage: swiperImage3 },
+        { swiperBackgroundImage: swiperImage4 }
+    ],
+    overlayOpacity: 0.2
+}
 ---
 
-<Layout>
-	<Welcome />
+<Layout>	
+	<SwiperHero content={swiperHeroContent} />
+	<Breadcrumbs />
 </Layout>

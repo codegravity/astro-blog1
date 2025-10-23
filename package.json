@@ -9,12 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.0",
     "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/vite": "^4.1.15",
+    "@types/nodemailer": "^7.0.2",
     "astro": "^5.14.8",
     "astro-breadcrumbs": "^3.3.1",
     "astro-robots-txt": "^1.0.0",
+    "astro-swiper": "^1.1.0",
+    "dotenv": "^17.2.3",
     "lucide-astro": "^0.546.0",
+    "nodemailer": "^7.0.10",
     "tailwindcss": "^4.1.15"
   }
 }
