@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/node": "^9.5.0",
     "@astrojs/sitemap": "^3.6.0",
+    "@aws-sdk/client-sesv2": "^3.914.0",
     "@tailwindcss/vite": "^4.1.15",
     "@types/nodemailer": "^7.0.2",
     "astro": "^5.14.8",
