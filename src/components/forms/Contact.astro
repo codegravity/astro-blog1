@@ -6,6 +6,8 @@ import Radio from "@components/ui/form/Radio.astro";
 import Checkbox from "@components/ui/form/Checkbox.astro";
 import Select from "@components/ui/form/Select.astro";
 
+
+
 const formBackground = 'light';
 const interestOptions = [
     { label: "Boende", value: "Boende" },
@@ -72,6 +74,8 @@ const interestOptions = [
 
 <script is:inline>
 
+
+
 const get = (id) => document.getElementById(id) || { value: '' }
 const submitForm = () => {
   saveInput()
@@ -81,7 +85,7 @@ const submitForm = () => {
 const getFormData = () => {
   const store = Object.create(null)
   //store.name = get('name')?.value
-  store.name = "Brett Victor Simpson"
+  store.name = get('name')?.value
   store.email = get('email')?.value
   store.tel = get('tel')?.value
   //store.subject = get('subject')?.value
@@ -130,6 +134,9 @@ const sendmail = async () => {
     })
   console.log(data) // Here is the response from backend
    alert('Message successfully sent');
+   //res.redirect('/success.astro');
+   // onOpen(modal-id, callback)
+
   
 }
 </script>       

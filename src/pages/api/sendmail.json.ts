@@ -35,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
     )}</div>`
 
     // sendmail
-    let mailTransporter = nodemailer.createTransport({
+    let mailTransporter = await nodemailer.createTransport({
       host,
       port: 587,
       secure: false,
@@ -60,6 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
       console.log('******* Error: ', error)   
     }
     console.log('Message sent: %s', mailresult?.messageId)
+    
     
    
     // return endpoint response

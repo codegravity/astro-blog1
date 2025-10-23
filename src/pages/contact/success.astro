@@ -1,0 +1,27 @@
+---
+
+import Layout from "@layouts/Layout.astro";
+import InnerHero from "@components/sections/InnerHero.astro";
+import ContactInfo from "@components/sections/ContactInfo.astro";
+import KontaktSuccess from "@components/sections/KontaktSuccess.astro";
+import ContactHeroImage from '../../assets/images/home/skutan-gondolen1.jpg';
+
+
+
+const innerHeroContent = {
+    title: "Kontakta Oss",
+    description: "för mer information",
+    backgroundImage: ContactHeroImage,
+    overlayOpacity: 0.2
+}
+
+---
+
+
+<Layout title="Contact Us" description="Contact us for more information">
+    <InnerHero content={innerHeroContent} />
+    <ContactInfo background="base" padding="base" />
+    <KontaktSuccess />
+    
+  
+</Layout>
